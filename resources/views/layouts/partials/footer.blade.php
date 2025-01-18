@@ -3,12 +3,15 @@
             <div
             class="d-flex align-items-center justify-content-between small"
             >
-        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-            <div>
+            <div class="text-muted">
+                Copyright &copy; {{ date('Y') }} Isarva Infotech Pvt Ltd. All rights reserved.
+            </div>
+
+            <!-- <div>
                 <a href="#">Privacy Policy</a>
                     &middot;
                 <a href="#">Terms &amp; Conditions</a>
-            </div>
+            </div> -->
         </div>
     </div>
 </footer>

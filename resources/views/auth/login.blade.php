@@ -1,17 +1,119 @@
 <style>
+    body {
+        background-color: #f7fafc;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .login-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .login-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
     .social-link {
         margin-right: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        padding: 12px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        width: 100%;
+        transition: background-color 0.3s ease;
     }
-    .social-link img {
-        width: 30px;
+
+    .social-link i {
+        margin-right: 10px;
+    }
+
+    .social-link.google {
+        background-color: #db4437;
+        color: white;
+    }
+
+    .social-link.google:hover {
+        background-color: #c1351d;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 8px;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #45a049;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+    }
+
+    .input-group input:focus {
+        border-color: #4CAF50;
+        outline: none;
+    }
+
+    .remember-me {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .remember-me input {
+        margin-right: 8px;
+    }
+
+    .forgot-password {
+        text-align: right;
+        font-size: 14px;
+        color: #4CAF50;
+    }
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+
+    .google-icon{
+        width:30px;
+        height:30px;
+        margin-right:5px;
     }
 </style>
+
 
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="space-y-6">
         @csrf
 
         <!-- Email Address -->
@@ -24,12 +126,10 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
-
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -54,22 +154,11 @@
         </div>
 
         {{-- Social Login Section --}}
-        <div class="flex items-center mt-4">
-
+        <div class="flex items-center mt-4 space-x-4">
             {{-- Login with Google --}}
-            <a title="Login with Google" href="{{ route('auth.redirection', 'google') }}" class="social-link inline-block px-3 py-2 rounded-lg shadow btn btn-block btn-danger">
-                <img src="{{ asset('assets/icons/google.png') }}" />
+            <a title="Login with Google" href="{{ route('auth.redirection', 'google') }}" class="social-link google text-center btn btn-block">
+                <img src="{{asset('assets/icons/google-icon.png')}}" alt=""  class="google-icon"> {{ __('Login with Google') }}
             </a>
-
-            <!-- {{-- Login with Facebook --}}
-            <a title="Login with Facebook" href="{{ route('auth.redirection', 'facebook') }}" class="social-link inline-block px-3 py-2 rounded-lg shadow">
-                <img src="{{ asset('assets/icons/facebook.jpeg') }}" />
-            </a>
-
-            {{-- Login with Github --}}
-            <a title="Login with Github" href="{{ route('auth.redirection', 'github') }}" class="social-link inline-block px-3 py-2 rounded-lg shadow">
-                <img src="{{ asset('assets/icons/github.png') }}" />
-            </a> -->
         </div>
 
     </form>
